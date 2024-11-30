@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
 import 'pages/moles.dart';
-import 'placepage.dart'; // Import PlacesPage
-import 'contactpage.dart'; // Import ContactPage
 
 
 class HomePage extends StatefulWidget {
   final ValueChanged<bool> onThemeChanged;
 
+
   HomePage({required this.onThemeChanged});
+
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
+
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0; // Tracks the selected index of BottomNavigationBar
 
-  // ignore: unused_field
-  final List<Widget> _pages = [
-    HomePage(onThemeChanged: (bool) {}), // Home Page
-    PlacesPage(onThemeChanged: (bool) {}), // Places Page
-    ContactPage(onThemeChanged: (bool) {}), // Contact Page
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +30,7 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 29, 95, 75),
       ),
+
 
       // Sub-navbar with subtitle
       body: SingleChildScrollView(
@@ -55,6 +51,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 
+
             // Places to Visit Section
             Padding(
               padding: const EdgeInsets.all(15.0),
@@ -71,35 +68,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                   SizedBox(height: 20),
 
+
                   // Column of clickable place cards
                   Column(
                     children: [
-                      placeCard(
-                        context,
-                        'assets/images/1.jpg',
-                        'Beautiful Convension',
-                        'A pristine house with crystal clear view.',
-                        'Beautiful Conversion Details',
-                        '2-3 hours'
-                      ),
-                      SizedBox(height: 15),
-                      placeCard(
-                        context,
-                        'assets/images/2.jpg',
-                        'Mountain Peak',
-                        'Stunning mountain views and hiking trails.',
-                        'Mountain Peak Details',
-                        '3-5 hours' // Average time spent
-                      ),
-                      SizedBox(height: 15),
-                      placeCard(
-                        context,
-                        'assets/images/3.jpg',
-                        'Agri-culture move',
-                        'Harvesting in Rwanda in ancient modern.',
-                        'Agri-culture move Details',
-                        '1-2 hours' // Average time spent
-                      ),
                       SizedBox(height: 15),
                       placeCard(
                         context,
@@ -136,6 +108,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
 
+
       // Bottom Navbar with images for Home, Places, and Contact (without labels)
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
@@ -146,28 +119,7 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             _currentIndex = index;
           });
-          if (index == 0) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomePage(onThemeChanged: widget.onThemeChanged),
-              ),
-            ); // Navigate to HomePage
-          } else if (index == 1) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PlacesPage(onThemeChanged: widget.onThemeChanged),
-              ),
-            ); // Navigate to PlacesPage
-          } else if (index == 2) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ContactPage(onThemeChanged: widget.onThemeChanged),
-              ),
-            ); // Navigate to ContactPage
-          }
+          // Handle bottom navigation actions here if needed.
         },
         items: [
           BottomNavigationBarItem(
@@ -188,6 +140,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
 
   // Widget for clickable place card, navigates to details page
   Widget placeCard(BuildContext context, String image, String title, String description, String detailsPageTitle, String averageTime) {
