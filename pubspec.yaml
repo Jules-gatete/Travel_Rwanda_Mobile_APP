@@ -1,5 +1,5 @@
-name: mytravel_rw
-description: 'A new Flutter project.'
+name: registration
+description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -30,99 +30,36 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  font_awesome_flutter: ^10.0.0
-  provider: ^6.0.5
-  firebase_core: ^3.7.0
-  firebase_auth: ^5.3.2
-  cloud_firestore: ^5.5.0
-  firebase_storage: ^12.3.4
+  font_awesome_flutter: ^10.1.0
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  flutter_map: ^7.0.2
-  latlong2: ^0.9.1
-  google_sign_in: ^6.2.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-flutter_lints: ^4.0.0
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
 # The following section is specific to Flutter packages.
 flutter:
-  assets:
-    - assets/images/welcome1.jpg
-    - assets/images/1.jpg
-    - assets/images/2.jpg
-    - assets/images/3.jpg
-    - assets/images/4.jpg
+    assets:
     - assets/images/logo3.png
-    - assets/images/home.png
-    - assets/images/discover.png
-    - assets/images/contact.png
-    - assets/images/house1.jpg
-    - assets/images/house2.jpg
-    - assets/images/house3.jpg
-    - assets/images/hotel1.jpg
-    - assets/images/hotel2.jpg
-    - assets/images/hotel3.jpg
-    - assets/images/hotel4.jpg
-    - assets/images/hotel5.jpg
-    - assets/images/mount1.jpg
-    - assets/images/mount2.jpg
-    - assets/images/mount3.jpg
-    - assets/images/mount4.jpg
-    - assets/images/mount5.jpg
-    - assets/images/site1.jpg
-    - assets/images/site2.jpeg
-    - assets/images/site3.jpeg
-    - assets/images/site4.jpg
-    - assets/images/facebook.png
-    - assets/images/twitter.png
-    - assets/images/instagram.png
-    - assets/images/phone.png
-    - assets/images/email.png
-    - assets/images/location.png
-    - assets/images/park1.jpg
-    - assets/images/park2.jpg
-    - assets/images/park3.jpg
-    - assets/images/park4.jpg
-    - assets/images/park5.jpg
-    - assets/images/more.png
-    - assets/images/gisenyi.jpg
-    - assets/images/back.png
-    - assets/images/heart.png
-    - assets/images/red.png
-    - assets/images/about.png
-    - assets/images/lang.png
-    - assets/images/privacy.png
-    - assets/images/terms.png
-    - assets/images/star.png
-    - assets/images/love.png
-    - assets/images/plane.png
-    - assets/images/promo.png
-    - assets/images/sett.png
-    - assets/images/logout.png
-    - assets/images/ellipse.png
-    - assets/images/account.png
-    - assets/images/bell.png
-    - assets/images/other.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-uses-material-design:
-  true
+uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:

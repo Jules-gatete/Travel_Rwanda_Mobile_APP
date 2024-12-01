@@ -1,69 +1,32 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'login.dart'; // Import the LoginPage
-import 'auth_service.dart'; // Import AuthService
 
-class RegisterPage extends StatefulWidget {
-  @override
-  _RegisterPageState createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _nameController = TextEditingController(); // Added for name input
-  final TextEditingController _confirmPasswordController = TextEditingController();
-  final AuthService _authService = AuthService();
-
-  // Sign up function
-  void _signUp() async {
-    if (_passwordController.text == _confirmPasswordController.text) {
-      User? user = await _authService.signUp(
-        _emailController.text,
-        _passwordController.text,
-        _nameController.text, // Pass the name to AuthService
-      );
-      if (user != null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => LoginPage()),
-        );
-      } else {
-        // Show error message
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Error signing up. Please try again.'),
-        ));
-      }
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text('Passwords do not match!'),
-      ));
-    }
-  }
-
+class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white, // Set the entire screen background to white
       body: Center(
         child: SingleChildScrollView(
           child: Column(
             children: [
+              // Green background with a fixed height
               Container(
-                height: 350,
-                color: Color(0xFF004D40),
+                height: 350, // Fixed height for the green section
+                color: Color(0xFF004D40), // Dark green background
                 width: double.infinity,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/logo3.png',
+                      'assets/images/logo3.png', // Add your logo path here
                       height: 80,
                     ),
                   ],
                 ),
               ),
+
+              // "Create an account" text
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 24.0),
                 child: Text(
@@ -74,23 +37,31 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
+
+              // Form section with a white background
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: Column(
                   children: [
-                    _buildTextField('Name', controller: _nameController), // Added name field
+                    _buildTextField('Name'),
                     SizedBox(height: 16),
-                    _buildTextField('Email', controller: _emailController),
+                    _buildTextField('Email'),
                     SizedBox(height: 16),
-                    _buildTextField('Password', controller: _passwordController, obscureText: true),
+                    _buildTextField('Password', obscureText: true),
                     SizedBox(height: 16),
-                    _buildTextField('Confirm password', controller: _confirmPasswordController, obscureText: true),
+                    _buildTextField('Confirm password', obscureText: true),
                     SizedBox(height: 24),
+
+                    // Sign Up button
                     ElevatedButton(
-                      onPressed: _signUp,
+                      onPressed: () {
+                        // When the user clicks SIGN UP, navigate to the LoginPage
+                      
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF004D40),
-                        padding: EdgeInsets.symmetric(horizontal: 120, vertical: 16),
+                        backgroundColor: Color(0xFF004D40), // Dark green button
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 120, vertical: 16),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
@@ -100,32 +71,41 @@ class _RegisterPageState extends State<RegisterPage> {
                         style: TextStyle(fontSize: 16, color: Colors.white),
                       ),
                     ),
-                    SizedBox(height: 26),
-                    Text('or sign up with'),
+                    SizedBox(height: 26,),
+
+                    // Or sign up with text
+                    Text(
+                      'or sign up with',
+                      style: TextStyle(color: Colors.black54),
+                    ),
                     SizedBox(height: 16),
+
+                    // Social media icons
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        _buildSocialIcon(FontAwesomeIcons.google, Colors.red),
+                        _buildSocialIcon(FontAwesomeIcons.google, const Color.fromARGB(255, 144, 161, 29)),
                         SizedBox(width: 16),
-                        _buildSocialIcon(FontAwesomeIcons.instagram, Colors.purpleAccent),
+                        _buildSocialIcon(FontAwesomeIcons.instagram, Colors.deepOrangeAccent),
                         SizedBox(width: 16),
-                        _buildSocialIcon(FontAwesomeIcons.facebookF, Colors.blue),
+                        _buildSocialIcon(FontAwesomeIcons.facebookF, Colors.blueAccent),
                       ],
                     ),
                     SizedBox(height: 24),
+
+                    // Already have an account
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Have an account?'),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginPage()),
-                            );
+                            
                           },
-                          child: Text('SIGN IN', style: TextStyle(color: Color(0xFF004D40))),
+                          child: Text(
+                            'SIGN IN',
+                            style: TextStyle(color: Color(0xFF004D40)),
+                          ),
                         ),
                       ],
                     ),
@@ -139,9 +119,9 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  Widget _buildTextField(String labelText, {bool obscureText = false, TextEditingController? controller}) {
+  // Helper method to build text fields
+  Widget _buildTextField(String labelText, {bool obscureText = false}) {
     return TextField(
-      controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(
         labelText: labelText,
@@ -155,11 +135,15 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
+  // Helper method to build social media icons
   Widget _buildSocialIcon(IconData icon, Color color) {
     return CircleAvatar(
       radius: 20,
       backgroundColor: color.withOpacity(0.1),
-      child: Icon(icon, color: color),
+      child: Icon(
+        icon,
+        color: color,
+      ),
     );
   }
 }
